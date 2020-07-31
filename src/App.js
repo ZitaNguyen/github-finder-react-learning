@@ -7,6 +7,9 @@ import Search from './components/users/Search';
 import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 import axios from 'axios';
+
+import GithubState from './context/github/GithubState'
+
 import './App.css';
 
 const App = () => {
@@ -93,7 +96,8 @@ const App = () => {
     // JSX Javascript extension, just one parent element
     // <Fragment>
     // 	<h1>Hello {name}</h1>
-    // </Fragment>
+	// </Fragment>
+	<GithubState>
     <Router>
       <div className='App'>
         <Navbar />
@@ -137,6 +141,7 @@ const App = () => {
         </div>
       </div>
     </Router>
+	</GithubState>
   );
 
   // without JSX
