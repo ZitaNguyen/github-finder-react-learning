@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
@@ -8,15 +8,16 @@ import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 
 import GithubState from './context/github/GithubState';
+import AlertState from './context/alert/AlertState';
 
 import './App.css';
 
 const App = () => {
-//   const [users, setUsers] = useState([]);
-//   const [user, setUser] = useState([]);
-//   const [repos, setRepos] = useState([]);
-//   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(null);
+// //   const [users, setUsers] = useState([]);
+// //   const [user, setUser] = useState([]);
+// //   const [repos, setRepos] = useState([]);
+// //   const [loading, setLoading] = useState(false);
+//   const [alert, setAlert] = useState(null);
 
   // state= {
   // 	users: [],
@@ -84,12 +85,12 @@ const App = () => {
 //   };
 
   // show alert
-  const showAlert = (msg, type) => {
-    // this.setState({ alert: { msg:msg, type:type } });
-    setAlert({ msg, type });
-    // setTimeout(() => this.setState({ alert: null}), 2000)
-    setTimeout(() => setAlert(null), 2000);
-  };
+//   const showAlert = (msg, type) => {
+//     // this.setState({ alert: { msg:msg, type:type } });
+//     setAlert({ msg, type });
+//     // setTimeout(() => this.setState({ alert: null}), 2000)
+//     setTimeout(() => setAlert(null), 2000);
+//   };
 
   return (
     // JSX Javascript extension, just one parent element
@@ -97,6 +98,7 @@ const App = () => {
     // 	<h1>Hello {name}</h1>
     // </Fragment>
     <GithubState>
+		<AlertState>
       <Router>
         <div className='App'>
           <Navbar />
@@ -113,7 +115,7 @@ const App = () => {
                       // searchUsers={searchUsers}
                     //   clearUsers={clearUsers}
                     //   showClear={users.length > 0 ? true : false}
-                      showAlert={showAlert}
+                    //   showAlert={showAlert}
                     />
                     {/* <Users loading={loading} users={users} /> */}
 					<Users />
@@ -141,6 +143,7 @@ const App = () => {
           </div>
         </div>
       </Router>
+	  </AlertState>
     </GithubState>
   );
 
