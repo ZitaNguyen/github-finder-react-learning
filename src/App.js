@@ -1,5 +1,9 @@
 import React, {Component, Fragment} from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { 
+	BrowserRouter as Router, 
+	Switch, 
+	Route 
+} from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Users from './components/users/Users'
 import User from './components/users/User'
@@ -85,6 +89,7 @@ class App extends Component {
 					<div className="container">
 						<Alert alert={alert} />
 						<Switch>
+							{/* Main page: search box and button */}
 							<Route exact path='/' render={props => (
 								<Fragment>
 									<Search 
@@ -96,7 +101,9 @@ class App extends Component {
 									<Users loading={loading} users={users} />
 								</Fragment>
 							)} />
+							{/* About page */}
 							<Route exact path='/about' component={About} />
+							{/* User page */}
 							<Route 
 								exact 
 								path='/user/:login' 

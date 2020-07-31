@@ -49,7 +49,9 @@ export class User extends Component {
                 ) : ( 
                     <i className='fas fa-times-circle text-danger' />
                 )}
+                {/* Introduction section */}
                 <div className="card grid-2">
+                    {/* Image on the left */}
                     <div className="all-center">
                         <img 
                             src={avatar_url} 
@@ -60,6 +62,7 @@ export class User extends Component {
                         <h1>{name}</h1>
                         <p>Location: {location}</p>
                     </div>
+                    {/* Bio on the right */}
                     <div>
                         {bio && <Fragment>
                             <h3>Bio</h3>
