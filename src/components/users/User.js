@@ -16,11 +16,6 @@ const User = ({ match }) => {
     // to ignore message of dependencies missing
   }, []); // empty bracket to mimic componentDidMount, avoid infinite loop
 
-  // componentDidMount() {
-  //     this.props.getUser(match.params.login);
-  //     this.props.getUserRepos(match.params.login);
-  // }
-
   const {
     name,
     avatar_url,
@@ -50,9 +45,7 @@ const User = ({ match }) => {
       ) : (
         <i className='fas fa-times-circle text-danger' />
       )}
-      {/* Introduction section */}
       <div className='card grid-2'>
-        {/* Image on the left */}
         <div className='all-center'>
           <img
             src={avatar_url}
@@ -63,7 +56,6 @@ const User = ({ match }) => {
           <h1>{name}</h1>
           <p>Location: {location}</p>
         </div>
-        {/* Bio on the right */}
         <div>
           {bio && (
             <Fragment>
@@ -111,13 +103,5 @@ const User = ({ match }) => {
     </Fragment>
   );
 };
-
-// User.propTypes = {
-//   // loading: PropTypes.bool,
-//   // user: PropTypes.object.isRequired,
-//   repos: PropTypes.array.isRequired,
-//   // getUser: PropTypes.func.isRequired,
-//   getUserRepos: PropTypes.func.isRequired,
-// };
 
 export default User;

@@ -12,16 +12,13 @@ const Search = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (text === '') {
-      // showAlert('Please enter something', 'light');
       alertContext.setAlert('Please enter something', 'light')
     } else {
       githubContext.searchUsers(text);
-      //   this.setState({ text: '' });
       setText('');
     }
   };
 
-  //   const onChange = (e) => this.setState({ [e.target.name]: e.target.value }); // e.target.name replaces for text, email, phone, etc.
   const onChange = (e) => setText(e.target.value);
 
   return (
@@ -48,12 +45,5 @@ const Search = () => {
     </div>
   );
 };
-
-// Search.propTypes = {
-//   // searchUsers: PropTypes.func.isRequired,
-//   // clearUsers: PropTypes.func.isRequired,
-//   // showClear: PropTypes.bool.isRequired,
-//   showAlert: PropTypes.func.isRequired,
-// };
 
 export default Search;
