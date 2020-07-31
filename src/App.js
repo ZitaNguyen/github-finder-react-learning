@@ -8,7 +8,7 @@ import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 import axios from 'axios';
 
-import GithubState from './context/github/GithubState'
+import GithubState from './context/github/GithubState';
 
 import './App.css';
 
@@ -38,19 +38,19 @@ const App = () => {
   // }
 
   // search Github users
-  const searchUsers = async (text) => {
-    // this.setState({ loading: true })
-    setLoading(true);
+  //   const searchUsers = async (text) => {
+  //     // this.setState({ loading: true })
+  //     setLoading(true);
 
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
-			&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
+  //     const res = await axios.get(
+  //       `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
+  // 			&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+  //     );
 
-    // this.setState({ users: res.data.items, loading: false })
-    setUsers(res.data.items);
-    setLoading(false);
-  };
+  //     // this.setState({ users: res.data.items, loading: false })
+  //     setUsers(res.data.items);
+  //     setLoading(false);
+  //   };
 
   // Get single Github user
   const getUser = async (username) => {
@@ -96,52 +96,52 @@ const App = () => {
     // JSX Javascript extension, just one parent element
     // <Fragment>
     // 	<h1>Hello {name}</h1>
-	// </Fragment>
-	<GithubState>
-    <Router>
-      <div className='App'>
-        <Navbar />
-        <div className='container'>
-          <Alert alert={alert} />
-          <Switch>
-            {/* Main page: search box and button */}
-            <Route
-              exact
-              path='/'
-              render={(props) => (
-                <Fragment>
-                  <Search
-                    searchUsers={searchUsers}
-                    clearUsers={clearUsers}
-                    showClear={users.length > 0 ? true : false}
-                    showAlert={showAlert}
+    // </Fragment>
+    <GithubState>
+      <Router>
+        <div className='App'>
+          <Navbar />
+          <div className='container'>
+            <Alert alert={alert} />
+            <Switch>
+              {/* Main page: search box and button */}
+              <Route
+                exact
+                path='/'
+                render={(props) => (
+                  <Fragment>
+                    <Search
+                      // searchUsers={searchUsers}
+                      clearUsers={clearUsers}
+                      showClear={users.length > 0 ? true : false}
+                      showAlert={showAlert}
+                    />
+                    <Users loading={loading} users={users} />
+                  </Fragment>
+                )}
+              />
+              {/* About page */}
+              <Route exact path='/about' component={About} />
+              {/* User page */}
+              <Route
+                exact
+                path='/user/:login'
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={getUser}
+                    getUserRepos={getUserRepos}
+                    user={user}
+                    repos={repos}
+                    loading={loading}
                   />
-                  <Users loading={loading} users={users} />
-                </Fragment>
-              )}
-            />
-            {/* About page */}
-            <Route exact path='/about' component={About} />
-            {/* User page */}
-            <Route
-              exact
-              path='/user/:login'
-              render={(props) => (
-                <User
-                  {...props}
-                  getUser={getUser}
-                  getUserRepos={getUserRepos}
-                  user={user}
-                  repos={repos}
-                  loading={loading}
-                />
-              )}
-            />
-          </Switch>
+                )}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-	</GithubState>
+      </Router>
+    </GithubState>
   );
 
   // without JSX
